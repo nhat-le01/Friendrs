@@ -15,20 +15,22 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         RatingBar r = (RatingBar) findViewById(R.id.ratingBar);
         Intent intent = getIntent();
+        //Get id of the image that just have been clicked on
         int currentViewdId = intent.getIntExtra("id", 0);
         r.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Intent goBack = new Intent();
+                //Send the rating back to the main activity
                 goBack.putExtra("Rating", String.valueOf(rating));
-                //goBack.putExtra("Id", currentViewdId);
                 setResult(RESULT_OK, goBack);
                 finish();
             }
         });
-        //Intent intent = getIntent();
+       
         ImageView currentImage = (ImageView) findViewById(R.id.img);
-        //int currentViewdId = intent.getIntExtra("id", 0);
+        //Check what image just have been clicked on, and replace the preview image with 
+        //a suitable one
         if(currentViewdId == R.id.chandlerImage) {
             currentImage.setImageResource(R.drawable.chandlerpreview);
         }
