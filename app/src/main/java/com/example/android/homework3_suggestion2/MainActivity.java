@@ -12,7 +12,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static final int CODE_RATING = 1000;
     int newlyRated;
-    //public String clickedOn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +34,17 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
 
         if (requestCode == CODE_RATING) {
-            // we are coming back from AddWordActivity
-            // intent
-            // -> "newword", "newdefn"
+            // we are coming back from DetailsActivity
+           
             String rating = intent.getStringExtra("Rating");
-            //int newlyRated = intent.getIntExtra("Id",0);
+            
             Context context = getApplicationContext();
             CharSequence text = "You rated this character " + rating;
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
-            //ImageView img = (ImageView) findViewById(newlyRated);
-            //img.setRating(Float.parseFloat(rating));
+            
+            //Check who you just rated
             if (newlyRated == R.id.chandlerImage) {
                 RatingBar r = (RatingBar) findViewById(R.id.chandlerRatingBar);
                 r.setRating(Float.parseFloat(rating));
@@ -73,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 r.setRating(Float.parseFloat(rating));
             }
 
-
-            //toast("You added the word: " + newWord);
         }
     }
 }
